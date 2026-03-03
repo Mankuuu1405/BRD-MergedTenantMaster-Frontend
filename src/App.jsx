@@ -1,0 +1,463 @@
+import React from "react";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate,
+    useLocation,
+} from "react-router-dom";
+
+// Layout Components
+import Sidebar from "./layout/Sidebar";
+import Header from "./layout/Header";
+
+// --- TENANT PAGES ---
+import TenantDashboard from "./pages/tenant/Dashboard.jsx";
+import Branches from "./pages/tenant/Branches.jsx";
+import Loans from "./pages/tenant/Loans.jsx";
+import LoanApplications from "./pages/tenant/LoanApplications.jsx";
+import PersonalLoanApplicationWizard from "./pages/tenant/PersonalLoanApplicationWizard.jsx";
+import AddBusiness from "./pages/tenant/AddBusiness.jsx";
+import Leads from "./pages/tenant/Leads.jsx";
+import Campaigns from "./pages/tenant/Campaigns.jsx";
+import AddLead from "./pages/tenant/AddLead.jsx";
+import RiskEngine from "./pages/tenant/RiskEngine.jsx";
+import EscalationRules from "./pages/tenant/EscalationRules.jsx";
+import MandateManagement from "./pages/tenant/MandateManagement.jsx";
+import DisbursementQueue from "./pages/tenant/DisbursementQueue.jsx";
+import Collections from "./pages/tenant/Collections.jsx";
+import LoanAccountsList from "./pages/tenant/LoanAccountList.jsx";
+import LoanAccountDetails from "./pages/tenant/LoanAccountDetails.jsx";
+import Support from "./pages/tenant/SupportTickets.jsx";
+import Training from "./pages/tenant/Training.jsx";
+import Logs from "./pages/tenant/Logs.jsx";
+import Calendar from "./pages/tenant/Calendar.jsx";
+import RolesPermissions from "./pages/tenant/RolesPermissions.jsx";
+import Users from "./pages/tenant/Users.jsx";
+import Settings from "./pages/tenant/Settings.jsx";
+import Profile from "./pages/tenant/Profile.jsx";
+import Notifications from "./pages/tenant/Notifications.jsx";
+import InternalTeamDashboards from "./pages/tenant/InternalTeamDashboards.jsx";
+import Rules from "./pages/tenant/Rules.jsx";
+import Categories from "./pages/tenant/Categories.jsx";
+import Reports from "./pages/tenant/Reports.jsx";
+import ChannelPartners from "./pages/tenant/ChannelPartners.jsx";
+import ApiProviders from "./pages/tenant/ApiProviders.jsx";
+import MySubscription from "./pages/tenant/MySubscription.jsx";
+import ThirdPartyUsers from "./pages/tenant/ThirdPartyUsers.jsx";
+import ActiveLoans from "./pages/tenant/ActiveLoans.jsx";
+import KnowledgeBase from "./pages/tenant/KnowledgeBase.jsx";
+import SubscriptionPlans from "./pages/tenant/SubscriptionPlans.jsx";
+import TenantRoles from "./pages/tenant/Roles.jsx";
+
+// --- MASTER PAGES (Restored) ---
+import MasterDashboard from "./pages/master/Dashboard.jsx";
+import OrganizationList from "./pages/master/organization/OrganizationList.jsx";
+import MasterUserList from "./pages/master/Users/UserList.jsx";
+import MasterRoleList from "./pages/master/roles/RoleList.jsx";
+
+// --- MASTER PAGES ---
+import MasterSubscriptionPage from "./pages/master/subscription/SubscriptionPage";
+import ApprovalList from "./pages/master/approvalMaster/ApprovalList";
+import { ManageApprovalPage } from "./pages/master/approvalMaster/ManageApprovalPage";
+import { EscalationPage } from "./pages/master/approvalMaster/EscalationPage";
+import ProductList from "./pages/master/productManagement/product/ProductList";
+import ProductMixList from "./pages/master/productManagement/productMixer/ProductMixList";
+import FeeList from "./pages/master/productManagement/fees/FeeList";
+import ChargeList from "./pages/master/productManagement/chargeManagement/ChargeList";
+import InterestList from "./pages/master/productManagement/interestManagement/InterestList";
+import RepaymentList from "./pages/master/productManagement/repaymentManagement/RepaymentList";
+import PenaltyList from "./pages/master/productManagement/penaltyManagement/PenaltyList";
+import MoratoriumList from "./pages/master/productManagement/moratiumManagment/MoratoriumList";
+import LoanImprovementDashboard from "./pages/master/loanImproveManagement/LoanImprovementDashboard";
+import CurrencyList from "./pages/master/currency-management/CurrencyList";
+import ConcessionList from "./pages/master/concession-management/ConcessionList";
+import EligibilityList from "./pages/master/Eligibilty&ScoreManagement/EligibilityManagement/EligibilityList";
+import BankingList from "./pages/master/Eligibilty&ScoreManagement/BankingManagement/BankingList";
+import ExistingObligationList from "./pages/master/Eligibilty&ScoreManagement/ExistingObligationManagement/ExistingObligationList";
+import ScoreCardList from "./pages/master/Eligibilty&ScoreManagement/ScoreCardManagement/ScoreCardList";
+import PredefinedTemplateList from "./pages/master/templateManagement/predefineTemplate/PredefinedTemplateList";
+import CustomizeTemplateList from "./pages/master/templateManagement/customizeTemplate/CustomizeTemplateList";
+import BankManagement from "./pages/master/bank-funds/BankManagement";
+import FundManagement from "./pages/master/bank-funds/FundManagement";
+import PortfolioManagement from "./pages/master/bank-funds/PortfolioManagement";
+import ModeOfBank from "./pages/master/bank-funds/ModeOfBank";
+import TaxationManagement from "./pages/master/bank-funds/TaxationManagement";
+import BusinessModel from "./pages/master/bank-funds/BusinessModel";
+import VendorList from "./pages/master/profile-management/vendor/VendorList";
+import AgentList from "./pages/master/profile-management/agent/AgentList";
+import ClientList from "./pages/master/profile-management/client/ClientList";
+import AuditMain from "./pages/master/audit/AuditMain";
+import ReportingAnalytics from "./pages/master/Reports/ReportingAnalytics";
+
+// Rule Management
+import RuleNameList from "./pages/master/rule-management/rule-master/RuleNameList";
+import AddRuleName from "./pages/master/rule-management/rule-master/AddRuleName";
+import EditRuleName from "./pages/master/rule-management/rule-master/EditRuleName";
+import ViewRuleName from "./pages/master/rule-management/rule-master/ViewRuleName";
+
+import ImpactValueList from "./pages/master/rule-management/impact-values/ImpactValueList";
+import AddImpactValue from "./pages/master/rule-management/impact-values/AddImpactValue";
+import EditImpactValue from "./pages/master/rule-management/impact-values/EditImpactValue";
+import ViewImpactValue from "./pages/master/rule-management/impact-values/ViewImpactValue";
+
+import ClientProfileRuleList from "./pages/master/rule-management/client-profile/ClientProfileRuleList";
+import AddClientProfileRule from "./pages/master/rule-management/client-profile/AddClientProfileRule";
+import EditClientProfileRule from "./pages/master/rule-management/client-profile/EditClientProfileRule";
+import ViewClientProfileRule from "./pages/master/rule-management/client-profile/ViewClientProfileRule";
+
+import CollateralRuleList from "./pages/master/rule-management/collateral-quality/CollateralRuleList";
+import AddCollateralRule from "./pages/master/rule-management/collateral-quality/AddCollateralRule";
+import EditCollateralRule from "./pages/master/rule-management/collateral-quality/EditCollateralRule";
+import ViewCollateralRule from "./pages/master/rule-management/collateral-quality/ViewCollateralRule";
+
+import FinancialRuleList from "./pages/master/rule-management/financial-eligibility/FinancialRuleList";
+import AddFinancialRule from "./pages/master/rule-management/financial-eligibility/AddFinancialRule";
+import EditFinancialRule from "./pages/master/rule-management/financial-eligibility/EditFinancialRule";
+import ViewFinancialRule from "./pages/master/rule-management/financial-eligibility/ViewFinancialRule";
+
+import ScorecardHome from "./pages/master/rule-management/scorecard/ScorecardHome";
+import InternalScoreRuleList from "./pages/master/rule-management/scorecard/InternalScoreRuleList";
+import AddInternalScoreRule from "./pages/master/rule-management/scorecard/AddInternalScoreRule";
+import EditInternalScoreRule from "./pages/master/rule-management/scorecard/EditInternalScoreRule";
+import ViewInternalScoreRule from "./pages/master/rule-management/scorecard/ViewInternalScoreRule";
+import AddCreditHistoryRule from "./pages/master/rule-management/scorecard/AddCreditHistoryRule";
+import AddGeoLocationRule from "./pages/master/rule-management/scorecard/AddGeoLocationRule";
+import EditGeoLocationRule from "./pages/master/rule-management/scorecard/EditGeoLocationRule";
+import ViewGeoLocationRule from "./pages/master/rule-management/scorecard/ViewGeoLocationRule";
+
+import RiskMitigationRuleList from "./pages/master/rule-management/risk-mitigation/RiskMitigationRuleList";
+import AddRiskMitigationRule from "./pages/master/rule-management/risk-mitigation/AddRiskMitigationRule";
+import EditRiskMitigationRule from "./pages/master/rule-management/risk-mitigation/EditRiskMitigationRule";
+import ViewRiskMitigationRule from "./pages/master/rule-management/risk-mitigation/ViewRiskMitigationRule";
+
+import VerificationRuleHome from "./pages/master/rule-management/verification/VerificationRuleHome";
+import InternalVerificationRule from "./pages/master/rule-management/verification/InternalVerificationRule";
+import AddInternalVerificationRule from "./pages/master/rule-management/verification/AddInternalVerificationRule";
+import EditInternalVerificationRule from "./pages/master/rule-management/verification/EditInternalVerificationRule";
+import ViewInternalVerificationRule from "./pages/master/rule-management/verification/ViewInternalVerificationRule";
+import AgencyVerificationRule from "./pages/master/rule-management/verification/AgencyVerificationRule";
+import AddAgencyVerificationRule from "./pages/master/rule-management/verification/AddAgencyVerificationRule";
+import EditAgencyVerificationRule from "./pages/master/rule-management/verification/EditAgencyVerificationRule";
+import ViewAgencyVerificationRule from "./pages/master/rule-management/verification/ViewAgencyVerificationRule";
+
+// Controls Management
+import LanguageList from "./pages/master/ControlsManagement/ManageLanguage/LanguageList";
+import LanguageAdd from "./pages/master/ControlsManagement/ManageLanguage/AddLanguage";
+import LanguageEdit from "./pages/master/ControlsManagement/ManageLanguage/EditLanguage";
+import LanguageView from "./pages/master/ControlsManagement/ManageLanguage/ViewLanguage";
+
+import GeoLocationList from "./pages/master/ControlsManagement/ManageGeoLocation/GeoLocationList";
+import CountryList from "./pages/master/ControlsManagement/ManageGeoLocation/CountryList";
+import AddCountry from "./pages/master/ControlsManagement/ManageGeoLocation/AddCountry";
+import StateList from "./pages/master/ControlsManagement/ManageGeoLocation/StateList";
+import AddState from "./pages/master/ControlsManagement/ManageGeoLocation/AddState";
+import CityList from "./pages/master/ControlsManagement/ManageGeoLocation/CityList";
+import AddCity from "./pages/master/ControlsManagement/ManageGeoLocation/AddCity";
+import AreaList from "./pages/master/ControlsManagement/ManageGeoLocation/AreaList";
+import AddArea from "./pages/master/ControlsManagement/ManageGeoLocation/AddArea";
+
+import LoginAuthList from "./pages/master/ControlsManagement/ManageLoginAuthentication/LoginAuthList";
+import AddLoginAuth from "./pages/master/ControlsManagement/ManageLoginAuthentication/AddLoginAuth";
+import EditLoginAuth from "./pages/master/ControlsManagement/ManageLoginAuthentication/EditLoginAuth";
+import ViewLoginAuth from "./pages/master/ControlsManagement/ManageLoginAuthentication/ViewLoginAuth";
+
+import CoApplicantList from "./pages/master/ControlsManagement/ManageCoApplicant/CoApplicantList";
+import AddCoApplicant from "./pages/master/ControlsManagement/ManageCoApplicant/AddCoApplicant";
+import EditCoApplicant from "./pages/master/ControlsManagement/ManageCoApplicant/EditCoApplicant";
+import ViewCoApplicant from "./pages/master/ControlsManagement/ManageCoApplicant/ViewCoApplicant";
+
+import LoginFeeList from "./pages/master/ControlsManagement/ManageLoginFees/LoginFeeList";
+import AddLoginFee from "./pages/master/ControlsManagement/ManageLoginFees/AddLoginFee";
+import EditLoginFee from "./pages/master/ControlsManagement/ManageLoginFees/EditLoginFee";
+import ViewLoginFee from "./pages/master/ControlsManagement/ManageLoginFees/ViewLoginFee";
+
+import JointApplicantList from "./pages/master/ControlsManagement/ManageJointApplicant/JointApplicantList";
+import AddJointApplicant from "./pages/master/ControlsManagement/ManageJointApplicant/AddJointApplicant";
+import EditJointApplicant from "./pages/master/ControlsManagement/ManageJointApplicant/EditJointApplicant";
+import ViewJointApplicant from "./pages/master/ControlsManagement/ManageJointApplicant/ViewJointApplicant";
+
+import ReferenceList from "./pages/master/ControlsManagement/ManageReferences/ReferenceList";
+import AddReference from "./pages/master/ControlsManagement/ManageReferences/AddReference";
+import EditReference from "./pages/master/ControlsManagement/ManageReferences/EditReference";
+import ViewReference from "./pages/master/ControlsManagement/ManageReferences/ViewReference";
+
+import ApplicationProcessList from "./pages/master/ControlsManagement/ManageApplicationProcess/ApplicationProcessList";
+import UpdateActionType from "./pages/master/ControlsManagement/ManageApplicationProcess/UpdateActionType";
+import UpdateProcessingMode from "./pages/master/ControlsManagement/ManageApplicationProcess/UpdateProcessingMode";
+import UpdateApplication from "./pages/master/ControlsManagement/ManageApplicationProcess/UpdateApplication";
+
+import ScoreCardRatingHome from "./pages/master/ControlsManagement/ManageScoreCardRating/ScoreCardRatingHome";
+import ReferenceCheckList from "./pages/master/ControlsManagement/ManageScoreCardRating/ReferenceCheck/ReferenceCheckList";
+import AddReferenceCheck from "./pages/master/ControlsManagement/ManageScoreCardRating/ReferenceCheck/AddReferenceCheck";
+import EditReferenceCheck from "./pages/master/ControlsManagement/ManageScoreCardRating/ReferenceCheck/EditReferenceCheck";
+import CreditHistoryList from "./pages/master/ControlsManagement/ManageScoreCardRating/CreditHistory/CreditHistoryList";
+import AddCreditHistory from "./pages/master/ControlsManagement/ManageScoreCardRating/CreditHistory/AddCreditHistory";
+import EditCreditHistory from "./pages/master/ControlsManagement/ManageScoreCardRating/CreditHistory/EditCreditHistory";
+import InvestigationReportList from "./pages/master/ControlsManagement/ManageScoreCardRating/InvastigationReport/InvestigationReportList";
+import AddInvestigationReport from "./pages/master/ControlsManagement/ManageScoreCardRating/InvastigationReport/AddInvestigationReport";
+import EditInvestigationReport from "./pages/master/ControlsManagement/ManageScoreCardRating/InvastigationReport/EditInvestigationReport";
+
+import TeleVerificationList from "./pages/master/ControlsManagement/ManageVerification/TeleVerification/TeleVerificationList";
+
+// Agent Master
+import VerificationAgencyList from "./pages/master/agent-management/VerificationAgency/VerificationAgencyList";
+import VerificationAgencyForm from "./pages/master/agent-management/VerificationAgency/VerificationAgencyForm";
+import VerificationAgencyView from "./pages/master/agent-management/VerificationAgency/VerificationAgencyView";
+import ManageVerificationFees from "./pages/master/agent-management/VerificationAgency/ManageVerificationFees";
+
+import CollectionAgentList from "./pages/master/agent-management/CollectionAgent/CollectionAgentList";
+import CollectionAgentForm from "./pages/master/agent-management/CollectionAgent/CollectionAgentForm";
+import CollectionAgentView from "./pages/master/agent-management/CollectionAgent/CollectionAgentView";
+import UpdateAgent from "./pages/master/agent-management/CollectionAgent/UpdateAgent";
+import ManageFees from "./pages/master/agent-management/CollectionAgent/ManageFees";
+
+import LegalAgentList from "./pages/master/agent-management/CollectionAgent/LegalAgentList";
+import LegalAgentForm from "./pages/master/agent-management/CollectionAgent/LegalAgentForm";
+import LegalAgentView from "./pages/master/agent-management/CollectionAgent/LegalAgentView";
+
+// Auth Pages (using Tenant's as base)
+import Login from "./pages/tenant/Login.jsx";
+import Signup from "./pages/tenant/Signup.jsx";
+import ForgotPassword from "./pages/tenant/ForgotPassword.jsx";
+import SendLink from "./pages/tenant/SendLink.jsx";
+
+function MainLayout({ children }) {
+    const location = useLocation();
+    const noLayoutRoutes = ["/login", "/signup", "/forgot_password", "/sendlink"];
+    const shouldShowLayout = !noLayoutRoutes.includes(location.pathname);
+
+    return (
+        <div className="h-full bg-gray-50 flex text-gray-900">
+            {shouldShowLayout && (
+                <>
+                    <Sidebar />
+                    <Header />
+                </>
+            )}
+            <main className={shouldShowLayout ? "lg:ml-64 pt-28 lg:pt-16 w-full min-h-screen" : "w-full min-h-screen"}>
+                {children}
+            </main>
+        </div>
+    );
+}
+
+export default function App() {
+    return (
+        <Router>
+            <MainLayout>
+                <Routes>
+                    {/* AUTH */}
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/forgot_password" element={<ForgotPassword />} />
+                    <Route path="/sendlink" element={<SendLink />} />
+                    <Route path="/" element={<Navigate to="/login" />} />
+
+                    {/* TENANT ROUTES */}
+                    <Route path="/dashboard" element={<TenantDashboard />} />
+                    <Route path="/leads" element={<Leads />} />
+                    <Route path="/leads/new" element={<AddLead />} />
+                    <Route path="/campaigns" element={<Campaigns />} />
+                    <Route path="/risk-engine" element={<RiskEngine />} />
+                    <Route path="/escalation-rules" element={<EscalationRules />} />
+                    <Route path="/mandates" element={<MandateManagement />} />
+                    <Route path="/loan-accounts" element={<LoanAccountsList />} />
+                    <Route path="/loan-applications" element={<LoanApplications />} />
+                    <Route path="/loan-applications/new-personal-loan" element={<PersonalLoanApplicationWizard />} />
+                    <Route path="/disbursements" element={<DisbursementQueue />} />
+                    <Route path="/collections" element={<Collections />} />
+                    <Route path="/loan-account/:id" element={<LoanAccountDetails />} />
+                    <Route path="/support" element={<Support />} />
+                    <Route path="/training" element={<Training />} />
+                    <Route path="/add-business" element={<AddBusiness />} />
+                    <Route path="/my-subscription" element={<MySubscription />} />
+                    <Route path="/channel-partners" element={<ChannelPartners />} />
+                    <Route path="/channel-partners/sales" element={<ChannelPartners />} />
+                    <Route path="/channel-partners/api-providers" element={<ApiProviders />} />
+                    <Route path="/third-party-users" element={<ThirdPartyUsers />} />
+                    <Route path="/branches" element={<Branches />} />
+                    <Route path="/loans" element={<Loans />} />
+                    <Route path="/logs" element={<Logs />} />
+                    <Route path="/calendar" element={<Calendar />} />
+                    <Route path="/roles_permissions" element={<RolesPermissions />} />
+                    <Route path="/users" element={<Users />} />
+                    <Route path="/settings" element={<Settings />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/notifications" element={<Notifications />} />
+                    <Route path="/internal-team-dashboards" element={<InternalTeamDashboards />} />
+                    <Route path="/rules-config" element={<Rules />} />
+                    <Route path="/categories" element={<Categories />} />
+                    <Route path="/tenant-reports" element={<Reports />} />
+                    <Route path="/active-loans" element={<ActiveLoans />} />
+                    <Route path="/knowledge-base" element={<KnowledgeBase />} />
+                    <Route path="/subscription-plans" element={<SubscriptionPlans />} />
+                    <Route path="/roles" element={<TenantRoles />} />
+
+                    {/* MASTER ROUTES (Restored) */}
+                    <Route path="/master-dashboard" element={<MasterDashboard />} />
+                    <Route path="/organizations" element={<OrganizationList />} />
+                    <Route path="/master-users" element={<MasterUserList />} />
+                    <Route path="/master-roles" element={<MasterRoleList />} />
+
+                    {/* MASTER ROUTES (Existing) */}
+                    <Route path="/subscriptions" element={<MasterSubscriptionPage />} />
+                    <Route path="/approvals" element={<ApprovalList />} />
+                    <Route path="/manage-approvals" element={<ManageApprovalPage />} />
+                    <Route path="/escalation" element={<EscalationPage />} />
+                    <Route path="/product-management/list" element={<ProductList />} />
+                    <Route path="/product-mix/list" element={<ProductMixList />} />
+                    <Route path="/fees/list" element={<FeeList />} />
+                    <Route path="/charges/list" element={<ChargeList />} />
+                    <Route path="/interest/list" element={<InterestList />} />
+                    <Route path="/repayment/list" element={<RepaymentList />} />
+                    <Route path="/penalties" element={<PenaltyList />} />
+                    <Route path="/moratorium" element={<MoratoriumList />} />
+                    <Route path="/loan-improvement" element={<LoanImprovementDashboard />} />
+                    <Route path="/currency-management" element={<CurrencyList />} />
+                    <Route path="/concession-management" element={<ConcessionList />} />
+                    <Route path="/eligibility" element={<EligibilityList />} />
+                    <Route path="/banking" element={<BankingList />} />
+                    <Route path="/obligation" element={<ExistingObligationList />} />
+                    <Route path="/score-card" element={<ScoreCardList />} />
+                    <Route path="/predefine-template" element={<PredefinedTemplateList />} />
+                    <Route path="/customize-template" element={<CustomizeTemplateList />} />
+                    <Route path="/bank-management" element={<BankManagement />} />
+                    <Route path="/fund-management" element={<FundManagement />} />
+                    <Route path="/portfolio-management" element={<PortfolioManagement />} />
+                    <Route path="/mode-of-bank" element={<ModeOfBank />} />
+                    <Route path="/taxation-management" element={<TaxationManagement />} />
+                    <Route path="/business-model" element={<BusinessModel />} />
+                    <Route path="/vendor" element={<VendorList />} />
+                    <Route path="/profile-management/agent" element={<AgentList />} />
+                    <Route path="/profile-management/client" element={<ClientList />} />
+                    <Route path="/audits" element={<AuditMain />} />
+                    <Route path="/master-reports" element={<ReportingAnalytics />} />
+
+                    {/* Master Sub-tabs */}
+                    {/* Agent Master */}
+                    <Route path="/verification-agency" element={<VerificationAgencyList />} />
+                    <Route path="/verification-agency/add" element={<VerificationAgencyForm />} />
+                    <Route path="/verification-agency/edit/:id" element={<VerificationAgencyForm />} />
+                    <Route path="/verification-agency/view/:id" element={<VerificationAgencyView />} />
+                    <Route path="/verification-agency/manage-fees/:id" element={<ManageVerificationFees />} />
+
+                    <Route path="/collection-agent" element={<CollectionAgentList />} />
+                    <Route path="/collection-agent/add" element={<CollectionAgentForm />} />
+                    <Route path="/collection-agent/edit/:id" element={<CollectionAgentForm />} />
+                    <Route path="/collection-agent/view/:id" element={<CollectionAgentView />} />
+                    <Route path="/collection-agent/update/:id" element={<UpdateAgent />} />
+                    <Route path="/collection-agent/fees/:id" element={<ManageFees />} />
+
+                    <Route path="/legal-agent" element={<LegalAgentList />} />
+                    <Route path="/legal-agents/add" element={<LegalAgentForm />} />
+                    <Route path="/legal-agents/edit/:id" element={<LegalAgentForm />} />
+                    <Route path="/legal-agents/view/:id" element={<LegalAgentView />} />
+
+                    {/* Controls Management */}
+                    <Route path="/controls/language" element={<LanguageList />} />
+                    <Route path="/controls/language/add" element={<LanguageAdd />} />
+                    <Route path="/controls/language/edit/:id" element={<LanguageEdit />} />
+                    <Route path="/controls/language/view/:id" element={<LanguageView />} />
+
+                    <Route path="/controls/geo" element={<GeoLocationList />} />
+                    <Route path="/controls/geo/add" element={<AddGeoLocationRule />} />
+                    <Route path="/controls/geo/edit/:id" element={<EditGeoLocationRule />} />
+                    <Route path="/controls/geo/view/:id" element={<ViewGeoLocationRule />} />
+
+                    <Route path="/controls/login-auth" element={<LoginAuthList />} />
+                    <Route path="/controls/login-auth/add" element={<AddLoginAuth />} />
+                    <Route path="/controls/login-auth/edit/:id" element={<EditLoginAuth />} />
+                    <Route path="/controls/login-auth/view/:id" element={<ViewLoginAuth />} />
+
+                    <Route path="/controls/co-applicant" element={<CoApplicantList />} />
+                    <Route path="/controls/co-applicant/add" element={<AddCoApplicant />} />
+                    <Route path="/controls/co-applicant/edit/:id" element={<EditCoApplicant />} />
+                    <Route path="/controls/co-applicant/view/:id" element={<ViewCoApplicant />} />
+
+                    <Route path="/controls/login-fees" element={<LoginFeeList />} />
+                    <Route path="/controls/login-fees/add" element={<AddLoginFee />} />
+                    <Route path="/controls/login-fees/edit/:id" element={<EditLoginFee />} />
+                    <Route path="/controls/login-fees/view/:id" element={<ViewLoginFee />} />
+
+                    <Route path="/controls/joint-applicant" element={<JointApplicantList />} />
+                    <Route path="/controls/joint-applicant/add" element={<AddJointApplicant />} />
+                    <Route path="/controls/joint-applicant/edit/:id" element={<EditJointApplicant />} />
+                    <Route path="/controls/joint-applicant/view/:id" element={<ViewJointApplicant />} />
+
+                    <Route path="/controls/references" element={<ReferenceList />} />
+                    <Route path="/controls/references/add" element={<AddReference />} />
+                    <Route path="/controls/references/edit/:id" element={<EditReference />} />
+                    <Route path="/controls/references/view/:id" element={<ViewReference />} />
+
+                    <Route path="/controls/application-process" element={<ApplicationProcessList />} />
+                    <Route path="/controls/application-process/action-type" element={<UpdateActionType />} />
+                    <Route path="/controls/application-process/processing-mode" element={<UpdateProcessingMode />} />
+                    <Route path="/controls/application-process/update-application" element={<UpdateApplication />} />
+
+                    <Route path="/controls/score-card" element={<ScoreCardRatingHome />} />
+                    <Route path="/controls/score-card/reference-check" element={<ReferenceCheckList />} />
+                    <Route path="/controls/score-card/reference-check/add" element={<AddReferenceCheck />} />
+                    <Route path="/controls/score-card/reference-check/edit/:id" element={<EditReferenceCheck />} />
+                    <Route path="/controls/score-card/credit-history" element={<CreditHistoryList />} />
+                    <Route path="/controls/score-card/credit-history/add" element={<AddCreditHistory />} />
+                    <Route path="/controls/score-card/credit-history/edit/:id" element={<EditCreditHistory />} />
+                    <Route path="/controls/score-card/investigation-report" element={<InvestigationReportList />} />
+                    <Route path="/controls/score-card/investigation-report/add" element={<AddInvestigationReport />} />
+                    <Route path="/controls/score-card/investigation-report/edit/:id" element={<EditInvestigationReport />} />
+
+                    <Route path="/controls/verification" element={<TeleVerificationList />} />
+
+                    {/* Rule Management */}
+                    <Route path="/rule-management/rule-master" element={<RuleNameList />} />
+                    <Route path="/rule-management/rule-master/add" element={<AddRuleName />} />
+                    <Route path="/rule-management/rule-master/edit/:id" element={<EditRuleName />} />
+                    <Route path="/rule-management/rule-master/view/:id" element={<ViewRuleName />} />
+
+                    <Route path="/rule-management/impact-values" element={<ImpactValueList />} />
+                    <Route path="/rule-management/impact-values/add" element={<AddImpactValue />} />
+                    <Route path="/rule-management/impact-values/edit/:id" element={<EditImpactValue />} />
+                    <Route path="/rule-management/impact-values/view/:id" element={<ViewImpactValue />} />
+
+                    <Route path="/rule-management/client-profile" element={<ClientProfileRuleList />} />
+                    <Route path="/rule-management/client-profile/add" element={<AddClientProfileRule />} />
+                    <Route path="/rule-management/client-profile/edit/:id" element={<EditClientProfileRule />} />
+                    <Route path="/rule-management/client-profile/view/:id" element={<ViewClientProfileRule />} />
+
+                    <Route path="/rule-management/collateral-quality" element={<CollateralRuleList />} />
+                    <Route path="/rule-management/collateral-quality/add" element={<AddCollateralRule />} />
+                    <Route path="/rule-management/collateral-quality/edit/:id" element={<EditCollateralRule />} />
+                    <Route path="/rule-management/collateral-quality/view/:id" element={<ViewCollateralRule />} />
+
+                    <Route path="/rule-management/financial-eligibility" element={<FinancialRuleList />} />
+                    <Route path="/rule-management/financial-eligibility/add" element={<AddFinancialRule />} />
+                    <Route path="/rule-management/financial-eligibility/edit/:id" element={<EditFinancialRule />} />
+                    <Route path="/rule-management/financial-eligibility/view/:id" element={<ViewFinancialRule />} />
+
+                    <Route path="/rule-management/risk-mitigation" element={<RiskMitigationRuleList />} />
+                    <Route path="/rule-management/risk-mitigation/add" element={<AddRiskMitigationRule />} />
+                    <Route path="/rule-management/risk-mitigation/edit/:id" element={<EditRiskMitigationRule />} />
+                    <Route path="/rule-management/risk-mitigation/view/:id" element={<ViewRiskMitigationRule />} />
+
+                    <Route path="/rule-management/scorecard" element={<ScorecardHome />} />
+                    <Route path="/rule-management/scorecard/internal-score/add" element={<AddInternalScoreRule />} />
+                    <Route path="/rule-management/scorecard/internal-score/edit/:id" element={<EditInternalScoreRule />} />
+                    <Route path="/rule-management/scorecard/internal-score/view/:id" element={<ViewInternalScoreRule />} />
+                    <Route path="/rule-management/scorecard/credit-history/add" element={<AddCreditHistoryRule />} />
+
+                    <Route path="/rule-management/verification" element={<VerificationRuleHome />} />
+                    <Route path="/rule-management/verification/internal" element={<InternalVerificationRule />} />
+                    <Route path="/rule-management/verification/internal/add" element={<AddInternalVerificationRule />} />
+                    <Route path="/rule-management/verification/internal/edit/:id" element={<EditInternalVerificationRule />} />
+                    <Route path="/rule-management/verification/internal/view/:id" element={<ViewInternalVerificationRule />} />
+                    <Route path="/rule-management/verification/agency" element={<AgencyVerificationRule />} />
+                    <Route path="/rule-management/verification/agency/add" element={<AddAgencyVerificationRule />} />
+                    <Route path="/rule-management/verification/agency/edit/:id" element={<EditAgencyVerificationRule />} />
+                    <Route path="/rule-management/verification/agency/view/:id" element={<ViewAgencyVerificationRule />} />
+
+                    <Route path="*" element={<Navigate to="/login" />} />
+                </Routes>
+            </MainLayout>
+        </Router>
+    );
+}
