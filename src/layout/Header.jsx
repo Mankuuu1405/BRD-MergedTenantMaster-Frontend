@@ -6,8 +6,10 @@ import {
   Cog6ToothIcon,
   DocumentArrowDownIcon,
 } from "@heroicons/react/24/outline";
+import { useNavigate } from "react-router-dom";
 
 export default function Header({ onRefresh, onExportReport }) {
+  const navigate = useNavigate();
   const [avatar, setAvatar] = useState(null);
   const [notifications, setNotifications] = useState([]);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -31,7 +33,7 @@ export default function Header({ onRefresh, onExportReport }) {
         setAvatar(localStorage.getItem("profile_avatar") || null);
         const userData = localStorage.getItem("user_data");
         if (userData) setUser(JSON.parse(userData));
-      } catch {}
+      } catch { }
     };
 
     load();
@@ -246,7 +248,7 @@ export default function Header({ onRefresh, onExportReport }) {
 
                 <div className="py-1">
                   <button
-                    onClick={() => { setShowProfile(false); navigateToSettings("profile"); }}
+                    onClick={() => { setShowProfile(false); navigate("/profile"); }}
                     className="w-full text-left px-4 py-2.5 text-sm hover:bg-gray-50 flex items-center gap-3 transition-colors"
                   >
                     <UserIcon className="h-4 w-4 text-gray-400" /> My Profile

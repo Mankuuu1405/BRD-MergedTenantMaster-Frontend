@@ -94,7 +94,7 @@ export default function ProductSelectionModal({ onClose, onSelect }) {
                     onChange={(e) => setSelectedProduct(e.target.value)}
                     className="w-full pl-4 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none appearance-none bg-white text-gray-900"
                   >
-                    {products.map((product) => (
+                    {(Array.isArray(products) ? products : []).map((product) => (
                       <option key={product.id} value={product.id}>
                         {product.name || product.title}
                       </option>

@@ -59,31 +59,111 @@ import MasterRoleList from "./pages/master/roles/RoleList.jsx";
 // --- MASTER PAGES ---
 import MasterSubscriptionPage from "./pages/master/subscription/SubscriptionPage";
 import ApprovalList from "./pages/master/approvalMaster/ApprovalList";
+import AddApproval from "./pages/master/approvalMaster/AddApproval";
+import EditApproval from "./pages/master/approvalMaster/EditApproval";
+import ApprovalView from "./pages/master/approvalMaster/ApprovalView";
 import { ManageApprovalPage } from "./pages/master/approvalMaster/ManageApprovalPage";
 import { EscalationPage } from "./pages/master/approvalMaster/EscalationPage";
+
 import ProductList from "./pages/master/productManagement/product/ProductList";
+import AddProduct from "./pages/master/productManagement/product/AddProduct";
+import EditProduct from "./pages/master/productManagement/product/EditProduct";
+import ViewProduct from "./pages/master/productManagement/product/ViewProduct";
+
 import ProductMixList from "./pages/master/productManagement/productMixer/ProductMixList";
+import AddProductMix from "./pages/master/productManagement/productMixer/AddProductMix";
+import EditProductMix from "./pages/master/productManagement/productMixer/EditProductMix";
+
 import FeeList from "./pages/master/productManagement/fees/FeeList";
+import AddFees from "./pages/master/productManagement/fees/AddFees";
+import EditFees from "./pages/master/productManagement/fees/EditFees";
+
 import ChargeList from "./pages/master/productManagement/chargeManagement/ChargeList";
+import AddCharge from "./pages/master/productManagement/chargeManagement/AddCharge";
+import EditCharge from "./pages/master/productManagement/chargeManagement/EditCharge";
+import ChargeDetail from "./pages/master/productManagement/chargeManagement/ChargeDetail";
+
 import InterestList from "./pages/master/productManagement/interestManagement/InterestList";
+import AddInterest from "./pages/master/productManagement/interestManagement/AddInterest";
+import EditInterest from "./pages/master/productManagement/interestManagement/EditInterest";
+import InterestDetail from "./pages/master/productManagement/interestManagement/InterestDetail";
+
 import RepaymentList from "./pages/master/productManagement/repaymentManagement/RepaymentList";
+import AddRepayment from "./pages/master/productManagement/repaymentManagement/AddRepayment";
+import EditRepayment from "./pages/master/productManagement/repaymentManagement/EditRepayment";
+import RepaymentDetail from "./pages/master/productManagement/repaymentManagement/RepaymentDetail";
+
 import PenaltyList from "./pages/master/productManagement/penaltyManagement/PenaltyList";
+import AddPenalty from "./pages/master/productManagement/penaltyManagement/AddPenalty";
+import EditPenalty from "./pages/master/productManagement/penaltyManagement/EditPenalty";
+import PenaltyDetail from "./pages/master/productManagement/penaltyManagement/PenaltyDetail";
+
 import MoratoriumList from "./pages/master/productManagement/moratiumManagment/MoratoriumList";
+import AddMoratorium from "./pages/master/productManagement/moratiumManagment/AddMoratorium";
+import EditMoratorium from "./pages/master/productManagement/moratiumManagment/EditMoratorium";
+import MoratoriumDetail from "./pages/master/productManagement/moratiumManagment/MoratoriumDetail";
+
 import LoanImprovementDashboard from "./pages/master/loanImproveManagement/LoanImprovementDashboard";
+import LoanImprovementList from "./pages/master/loanImproveManagement/LoanImprovementList";
+import ChangeInterestRate from "./pages/master/loanImproveManagement/ChangeInterestRate";
+import ChangeRepaymentPeriod from "./pages/master/loanImproveManagement/ChangeRepaymentPeriod";
+import ChangeRepaymentAmount from "./pages/master/loanImproveManagement/ChangeRepaymentAmount";
+import ChangeLoanProduct from "./pages/master/loanImproveManagement/ChangeLoanProduct";
+import ChangeFeesCharges from "./pages/master/loanImproveManagement/ChangeFeesCharges";
+import ChangeCollateral from "./pages/master/loanImproveManagement/ChangeCollateral";
+import RepaymentRationalisation from "./pages/master/loanImproveManagement/RepaymentRationalisation";
+import MoratoriumInterest from "./pages/master/loanImproveManagement/MoratoriumInterest";
+import TopUpManagement from "./pages/master/loanImproveManagement/TopUpManagement";
+
 import CurrencyList from "./pages/master/currency-management/CurrencyList";
+import CurrencyForm from "./pages/master/currency-management/CurrencyForm";
+import CurrencyView from "./pages/master/currency-management/CurrencyView";
+
 import ConcessionList from "./pages/master/concession-management/ConcessionList";
+import ConcessionView from "./pages/master/concession-management/ConcessionView";
+import ConcessionTypeForm from "./pages/master/concession-management/ConcessionTypeForm";
+import ConcessionCategoryForm from "./pages/master/concession-management/ConcessionCategoryForm";
+
 import EligibilityList from "./pages/master/Eligibilty&ScoreManagement/EligibilityManagement/EligibilityList";
+import EligibilityView from "./pages/master/Eligibilty&ScoreManagement/EligibilityManagement/EligibilityView";
+import EligibilityForm from "./pages/master/Eligibilty&ScoreManagement/EligibilityManagement/EligibilityForm";
+
 import BankingList from "./pages/master/Eligibilty&ScoreManagement/BankingManagement/BankingList";
+import BankingView from "./pages/master/Eligibilty&ScoreManagement/BankingManagement/BankingView";
+import BankingForm from "./pages/master/Eligibilty&ScoreManagement/BankingManagement/BankingForm";
+
 import ExistingObligationList from "./pages/master/Eligibilty&ScoreManagement/ExistingObligationManagement/ExistingObligationList";
+import ExistingObligationView from "./pages/master/Eligibilty&ScoreManagement/ExistingObligationManagement/ExistingObligationView";
+import ExistingObligationForm from "./pages/master/Eligibilty&ScoreManagement/ExistingObligationManagement/ExistingObligationForm";
+
 import ScoreCardList from "./pages/master/Eligibilty&ScoreManagement/ScoreCardManagement/ScoreCardList";
+import ScoreCardView from "./pages/master/Eligibilty&ScoreManagement/ScoreCardManagement/ScoreCardView";
+import ScoreCardForm from "./pages/master/Eligibilty&ScoreManagement/ScoreCardManagement/ScoreCardForm";
+
 import PredefinedTemplateList from "./pages/master/templateManagement/predefineTemplate/PredefinedTemplateList";
+import AddTemplate from "./pages/master/templateManagement/predefineTemplate/AddTemplate";
+import ViewTemplate from "./pages/master/templateManagement/predefineTemplate/ViewTemplate";
+import EditTemplate from "./pages/master/templateManagement/predefineTemplate/EditTemplate";
+
 import CustomizeTemplateList from "./pages/master/templateManagement/customizeTemplate/CustomizeTemplateList";
+import CustomizeTemplateView from "./pages/master/templateManagement/customizeTemplate/CustomizeTemplateView";
+import CustomizeTemplateEdit from "./pages/master/templateManagement/customizeTemplate/CustomizeTemplateEdit";
+
 import BankManagement from "./pages/master/bank-funds/BankManagement";
+import AddBank from "./pages/master/bank-funds/AddBank";
+import EditBank from "./pages/master/bank-funds/EditBank";
 import FundManagement from "./pages/master/bank-funds/FundManagement";
+import AddFund from "./pages/master/bank-funds/AddFund";
+import EditFund from "./pages/master/bank-funds/EditFund";
+import ViewFund from "./pages/master/bank-funds/ViewFund";
 import PortfolioManagement from "./pages/master/bank-funds/PortfolioManagement";
+import AddPortfolio from "./pages/master/bank-funds/AddPortfolio";
+import EditPortfolio from "./pages/master/bank-funds/EditPortfolio";
+import ViewPortfolio from "./pages/master/bank-funds/ViewPortfolio";
 import ModeOfBank from "./pages/master/bank-funds/ModeOfBank";
 import TaxationManagement from "./pages/master/bank-funds/TaxationManagement";
 import BusinessModel from "./pages/master/bank-funds/BusinessModel";
+
 import VendorList from "./pages/master/profile-management/vendor/VendorList";
 import AgentList from "./pages/master/profile-management/agent/AgentList";
 import ClientList from "./pages/master/profile-management/client/ClientList";
@@ -303,28 +383,116 @@ export default function App() {
                     {/* MASTER ROUTES (Existing) */}
                     <Route path="/subscriptions" element={<MasterSubscriptionPage />} />
                     <Route path="/approvals" element={<ApprovalList />} />
+                    <Route path="/approvals/add" element={<AddApproval />} />
+                    <Route path="/approvals/edit/:id" element={<EditApproval />} />
+                    <Route path="/approvals/view/:id" element={<ApprovalView />} />
                     <Route path="/manage-approvals" element={<ManageApprovalPage />} />
                     <Route path="/escalation" element={<EscalationPage />} />
+
                     <Route path="/product-management/list" element={<ProductList />} />
+                    <Route path="/product-management/add" element={<AddProduct />} />
+                    <Route path="/product-management/:id/edit" element={<EditProduct />} />
+                    <Route path="/product-management/:id/view" element={<ViewProduct />} />
+
                     <Route path="/product-mix/list" element={<ProductMixList />} />
+                    <Route path="/product-mix/add" element={<AddProductMix />} />
+                    <Route path="/product-mix/:id/edit" element={<EditProductMix />} />
+
                     <Route path="/fees/list" element={<FeeList />} />
+                    <Route path="/fees/add" element={<AddFees />} />
+                    <Route path="/fees/:id/edit" element={<EditFees />} />
+
                     <Route path="/charges/list" element={<ChargeList />} />
+                    <Route path="/charges/add" element={<AddCharge />} />
+                    <Route path="/charges/edit/:id" element={<EditCharge />} />
+                    <Route path="/charges/:id" element={<ChargeDetail />} />
+
                     <Route path="/interest/list" element={<InterestList />} />
+                    <Route path="/interest/add" element={<AddInterest />} />
+                    <Route path="/interest/:id/edit" element={<EditInterest />} />
+                    <Route path="/interest/:id" element={<InterestDetail />} />
+
                     <Route path="/repayment/list" element={<RepaymentList />} />
+                    <Route path="/repayment/add" element={<AddRepayment />} />
+                    <Route path="/repayment/:id/edit" element={<EditRepayment />} />
+                    <Route path="/repayment/:id" element={<RepaymentDetail />} />
+
                     <Route path="/penalties" element={<PenaltyList />} />
+                    <Route path="/penalties/add" element={<AddPenalty />} />
+                    <Route path="/penalties/:id/edit" element={<EditPenalty />} />
+                    <Route path="/penalties/:id" element={<PenaltyDetail />} />
+
                     <Route path="/moratorium" element={<MoratoriumList />} />
-                    <Route path="/loan-improvement" element={<LoanImprovementDashboard />} />
+                    <Route path="/moratorium/add" element={<AddMoratorium />} />
+                    <Route path="/moratorium/:id/edit" element={<EditMoratorium />} />
+                    <Route path="/moratorium/:id/view" element={<MoratoriumDetail />} />
+                    <Route path="/moratorium/:id" element={<MoratoriumDetail />} />
+
+                    <Route path="/loan-improvement" element={<LoanImprovementList />} />
+                    <Route path="/loan-improvement-dashboard" element={<LoanImprovementDashboard />} />
+                    <Route path="/loan-improvement/:loanId" element={<LoanImprovementDashboard />} />
+                    <Route path="/loan-improvement/:loanId/interest-rate" element={<ChangeInterestRate />} />
+                    <Route path="/loan-improvement/:loanId/tenure" element={<ChangeRepaymentPeriod />} />
+                    <Route path="/loan-improvement/:loanId/emi" element={<ChangeRepaymentAmount />} />
+                    <Route path="/loan-improvement/:loanId/product" element={<ChangeLoanProduct />} />
+                    <Route path="/loan-improvement/:loanId/fees" element={<ChangeFeesCharges />} />
+                    <Route path="/loan-improvement/:loanId/collateral" element={<ChangeCollateral />} />
+                    <Route path="/loan-improvement/:loanId/rationalisation" element={<RepaymentRationalisation />} />
+                    <Route path="/loan-improvement/:loanId/moratorium" element={<MoratoriumInterest />} />
+                    <Route path="/loan-improvement/:loanId/top-up" element={<TopUpManagement />} />
+
                     <Route path="/currency-management" element={<CurrencyList />} />
+                    <Route path="/currency-management/add" element={<CurrencyForm />} />
+                    <Route path="/currency-management/edit/:id" element={<CurrencyForm isEdit="true" />} />
+                    <Route path="/currency-management/view/:id" element={<CurrencyView />} />
+
                     <Route path="/concession-management" element={<ConcessionList />} />
+                    <Route path="/concession-management/view/:id" element={<ConcessionView />} />
+                    <Route path="/concession-management/type/add" element={<ConcessionTypeForm />} />
+                    <Route path="/concession-management/category/add" element={<ConcessionCategoryForm />} />
+
                     <Route path="/eligibility" element={<EligibilityList />} />
+                    <Route path="/eligibility/add" element={<EligibilityForm />} />
+                    <Route path="/eligibility/edit/:id" element={<EligibilityForm isEdit="true" />} />
+                    <Route path="/eligibility/view/:id" element={<EligibilityView />} />
+
                     <Route path="/banking" element={<BankingList />} />
+                    <Route path="/banking/add" element={<BankingForm />} />
+                    <Route path="/banking/edit/:id" element={<BankingForm isEdit="true" />} />
+                    <Route path="/banking/view/:id" element={<BankingView />} />
+
                     <Route path="/obligation" element={<ExistingObligationList />} />
+                    <Route path="/obligation/add" element={<ExistingObligationForm />} />
+                    <Route path="/obligation/edit/:id" element={<ExistingObligationForm isEdit="true" />} />
+                    <Route path="/obligation/view/:id" element={<ExistingObligationView />} />
+
                     <Route path="/score-card" element={<ScoreCardList />} />
+                    <Route path="/score-card/add" element={<ScoreCardForm />} />
+                    <Route path="/score-card/edit/:id" element={<ScoreCardForm isEdit="true" />} />
+                    <Route path="/score-card/view/:id" element={<ScoreCardView />} />
+
                     <Route path="/predefine-template" element={<PredefinedTemplateList />} />
+                    <Route path="/predefine-template/add" element={<AddTemplate />} />
+                    <Route path="/predefine-template/edit/:id" element={<EditTemplate />} />
+                    <Route path="/predefine-template/view/:id" element={<ViewTemplate />} />
+
                     <Route path="/customize-template" element={<CustomizeTemplateList />} />
+                    <Route path="/customize-template/edit/:id" element={<CustomizeTemplateEdit />} />
+                    <Route path="/customize-template/view/:id" element={<CustomizeTemplateView />} />
+
                     <Route path="/bank-management" element={<BankManagement />} />
+                    <Route path="/bank-management/add" element={<AddBank />} />
+                    <Route path="/bank-management/edit/:id" element={<EditBank />} />
+
                     <Route path="/fund-management" element={<FundManagement />} />
+                    <Route path="/fund-management/add" element={<AddFund />} />
+                    <Route path="/fund-management/edit/:id" element={<EditFund />} />
+                    <Route path="/fund-management/view/:id" element={<ViewFund />} />
+
                     <Route path="/portfolio-management" element={<PortfolioManagement />} />
+                    <Route path="/portfolio-management/add" element={<AddPortfolio />} />
+                    <Route path="/portfolio-management/edit/:id" element={<EditPortfolio />} />
+                    <Route path="/portfolio-management/view/:id" element={<ViewPortfolio />} />
                     <Route path="/mode-of-bank" element={<ModeOfBank />} />
                     <Route path="/taxation-management" element={<TaxationManagement />} />
                     <Route path="/business-model" element={<BusinessModel />} />

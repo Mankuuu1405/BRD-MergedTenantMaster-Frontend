@@ -1024,7 +1024,7 @@ const ProductManager = ({ product, onBack, loanTypes }) => {
                       </div>
                     </div>
                   ) : (
-                    <InterestConfigForm product={currentProduct} onSave={refreshConfig} onCancel={() => {}} />
+                    <InterestConfigForm product={currentProduct} onSave={refreshConfig} onCancel={() => { }} />
                   )}
                 </div>
               )}
@@ -1045,7 +1045,7 @@ const ProductManager = ({ product, onBack, loanTypes }) => {
                     <div className="bg-orange-50/30 p-5 sm:p-8 rounded-2xl border border-orange-100/50">
                       <div className="text-xs font-bold text-orange-800 uppercase mb-4 tracking-widest">Waterfall Sequence</div>
                       <div className="flex flex-wrap gap-2 sm:gap-3">
-                        {configData.repayment.waterfall_sequence.map((step, i) => (
+                        {(Array.isArray(configData.repayment.waterfall_sequence) ? configData.repayment.waterfall_sequence : []).map((step, i) => (
                           <div key={i} className="flex items-center">
                             <span className="px-3 sm:px-4 py-1.5 sm:py-2 bg-white border border-orange-200 rounded-lg text-xs sm:text-sm font-bold text-slate-700 shadow-sm">{step}</span>
                             {i < configData.repayment.waterfall_sequence.length - 1 && <span className="text-orange-300 mx-1 sm:mx-3 font-bold">→</span>}
@@ -1055,7 +1055,7 @@ const ProductManager = ({ product, onBack, loanTypes }) => {
                     </div>
                   </div>
                 ) : (
-                  <RepaymentConfigForm product={currentProduct} onSave={refreshConfig} onCancel={() => {}} />
+                  <RepaymentConfigForm product={currentProduct} onSave={refreshConfig} onCancel={() => { }} />
                 )
               )}
 
@@ -1102,7 +1102,7 @@ const ProductManager = ({ product, onBack, loanTypes }) => {
                     </div>
                   </div>
                 ) : (
-                  <RiskConfigForm product={currentProduct} onSave={refreshConfig} onCancel={() => {}} />
+                  <RiskConfigForm product={currentProduct} onSave={refreshConfig} onCancel={() => { }} />
                 )
               )}
 
@@ -1243,18 +1243,19 @@ export default function Loans() {
     masterProductService.getProducts()
       .then((res) => {
         // Handle both paginated { results: [] } and plain array responses
-        const data = res.data?.results ?? res.data ?? [];
+        const rawData = res.data?.results ?? res.data ?? [];
+        const data = Array.isArray(rawData) ? rawData : [];
         const mapped = data
-          .filter((p) => p.is_active)                  // only active master products
+          .filter((p) => p && p.is_active)                  // only active master products
           .map((p) => ({
-            label: p.product_name,                      // shown in dropdown
-            value: p.product_name,                      // stored in loan_type field
+            label: p.product_name || "Unknown Product",      // shown in dropdown
+            value: p.product_name || p.id,                    // stored in loan_type field
           }));
         setLoanTypes(mapped);
       })
       .catch((err) => {
         console.error("Failed to fetch loan types from master backend:", err);
-        // Fail silently — dropdowns will show a "loading" placeholder
+        // Fail silently — dropdowns will show a "loading" placeholder or empty
         setLoanTypes([]);
       })
       .finally(() => setLoanTypesLoading(false));
@@ -1286,31 +1287,32 @@ export default function Loans() {
   };
 
 
-const toggleStatus = async (p) => {
-  // Optimistically flip the toggle immediately
-  setProducts((prev) =>
-    prev.map((item) =>
-      item.id === p.id ? { ...item, is_active: !p.is_active } : item
-    )
-  );
-  try {
-    await productLoanAPI.patch(p.id, { is_active: !p.is_active });
-    // ✅ NO loadProducts() here — optimistic update already shows correct state
-  } catch (e) {
-    // Revert if API fails
+  const toggleStatus = async (p) => {
+    // Optimistically flip the toggle immediately
     setProducts((prev) =>
       prev.map((item) =>
-        item.id === p.id ? { ...item, is_active: p.is_active } : item
+        item.id === p.id ? { ...item, is_active: !p.is_active } : item
       )
     );
-    alert("Status update failed");
-  }
-};
+    try {
+      await productLoanAPI.patch(p.id, { is_active: !p.is_active });
+      // ✅ NO loadProducts() here — optimistic update already shows correct state
+    } catch (e) {
+      // Revert if API fails
+      setProducts((prev) =>
+        prev.map((item) =>
+          item.id === p.id ? { ...item, is_active: p.is_active } : item
+        )
+      );
+      alert("Status update failed");
+    }
+  };
 
 
   const filteredProducts = useMemo(() => {
-    if (!search) return products;
-    return products.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
+    const productList = Array.isArray(products) ? products : [];
+    if (!search) return productList;
+    return productList.filter((p) => p && p.name && p.name.toLowerCase().includes(search.toLowerCase()));
   }, [products, search]);
 
   const pageWrapper = (children) => (
@@ -1382,7 +1384,7 @@ const toggleStatus = async (p) => {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              {filteredProducts.map((p) => (
+              {(Array.isArray(filteredProducts) ? filteredProducts : []).map((p) => (
                 <tr key={p.id} className="hover:bg-indigo-50/30 transition-colors group">
                   <td className="px-4 sm:px-6 lg:px-10 py-4 sm:py-6 lg:py-8">
                     <div className="font-bold text-slate-800 text-sm sm:text-base lg:text-lg mb-1">{p.name}</div>

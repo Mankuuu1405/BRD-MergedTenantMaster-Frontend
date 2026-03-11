@@ -40,6 +40,7 @@ const items = [
   { section: "Main Navigation" },
   { path: "/dashboard", label: "Dashboard", icon: HomeIcon },
   { path: "/leads", label: "Leads (CRM)", icon: FunnelIcon },
+  { path: "/loans", label: "Loan Products", icon: BanknotesIcon },
   { path: "/add-business", label: "Add Business", icon: BuildingOfficeIcon },
   { path: "/branches", label: "Branches", icon: ServerStackIcon },
   { path: "/internal-team-dashboards", label: "Internal Dashboards", icon: Squares2X2Icon },
@@ -51,7 +52,7 @@ const items = [
   { path: "/disbursements", label: "Disbursements", icon: ArrowsRightLeftIcon },
   { path: "/mandates", label: "Mandate Management", icon: DocumentDuplicateIcon },
   { path: "/risk-engine", label: "Risk Engine", icon: ShieldCheckIcon },
-  { path: "/rules-config", label: "Tenant Rules", icon: Cog6ToothIcon },
+  { path: "/rules-config", label: "Rules", icon: Cog6ToothIcon },
   { path: "/escalation-rules", label: "Escalation Matrix", icon: BellAlertIcon },
 
   { section: "Operations" },
@@ -85,10 +86,9 @@ const items = [
   { path: "/my-subscription", label: "My Subscription", icon: CreditCardIcon },
   { path: "/subscription-plans", label: "Subscription Plans", icon: TicketIcon },
   { path: "/settings", label: "System Settings", icon: Cog6ToothIcon },
-  { path: "/profile", label: "My Profile", icon: UserCircleIcon },
 
   // --- MASTER ADMIN SECTIONS ---
-  
+
   {
     label: "Approval Master",
     icon: CheckCircleIcon,
