@@ -19,7 +19,6 @@ import {
   FunnelIcon,
   ShieldCheckIcon,
   BellAlertIcon,
-  BuildingLibraryIcon,
   CalendarDaysIcon,
   DocumentTextIcon,
   TicketIcon,
@@ -89,13 +88,7 @@ const items = [
   { path: "/profile", label: "My Profile", icon: UserCircleIcon },
 
   // --- MASTER ADMIN SECTIONS ---
-  { section: "Master Governance" },
-  { path: "/master-dashboard", label: "Master Dashboard", icon: Squares2X2Icon },
-  { path: "/master-reports", label: "Master Reports & Analytics", icon: CalculatorIcon },
-  { path: "/organizations", label: "Organizations", icon: BuildingLibraryIcon },
-  { path: "/master-users", label: "Master Users", icon: UserCircleIcon },
-  { path: "/master-roles", label: "Master Roles", icon: ShieldCheckIcon },
-  { path: "/subscriptions", label: "Master Subscriptions", icon: CreditCardIcon },
+  
   {
     label: "Approval Master",
     icon: CheckCircleIcon,
